@@ -1,8 +1,11 @@
 pipeline {
     agent any
 
+    parameters {
+        string(name: 'BASE_URL', defaultValue: 'http://localhost:5173', description: 'URL base de la aplicación')
+    }
+
     environment {
-        BASE_URL = credentials('BASE_URL')
         PYTHONUNBUFFERED = '1'
     }
 
@@ -44,22 +47,17 @@ pipeline {
             post {
                 always {
                     junit allowEmptyResults: true, testResults: 'reports/*.xml'
+                    publishHTML([
+                        allowMissing: false,
+                        alwaysLinkToLastBuild: true,
+                        keepAll: true,
+                        reportDir: 'reports',
+                        reportFiles: 'report.html',
+                        reportName: 'Test Report'
+                    ])
+                    archiveArtifacts artifacts: 'reports/screenshots/*.png', allowEmptyArchive: true
                 }
             }
-        }
-    }
-
-    post {
-        always {
-            publishHTML([
-                allowMissing: false,
-                alwaysLinkToLastBuild: true,
-                keepAll: true,
-                reportDir: 'reports',
-                reportFiles: 'report.html',
-                reportName: 'Test Report'
-            ])
-            archiveArtifacts artifacts: 'reports/screenshots/*.png'
         }
     }
 }
