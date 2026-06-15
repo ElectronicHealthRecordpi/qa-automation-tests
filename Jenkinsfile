@@ -40,7 +40,6 @@ pipeline {
                     pytest tests \\
                         --html=reports/report.html --self-contained-html \\
                         --base-url=${BASE_URL} \\
-                        --headed=false \\
                         --browser=chromium
                 '''
             }
