@@ -38,7 +38,7 @@ pipeline {
                 sh '''
                     . venv/bin/activate
                     pytest tests \\
-                        --html=reports/report.html --self-contained-html \\
+                        --html=reports/report.html \\
                         --base-url=${BASE_URL} \\
                         --browser=chromium
                 '''
