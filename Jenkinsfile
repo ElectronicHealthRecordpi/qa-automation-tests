@@ -29,7 +29,7 @@ pipeline {
             steps {
                 sh '''
                     . venv/bin/activate
-                    playwright install --with-deps chromium
+                    playwright install chromium
                 '''
             }
         }
