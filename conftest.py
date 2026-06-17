@@ -19,8 +19,8 @@ def pytest_runtest_makereport(item, call):
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             screenshots_dir = Path("reports/screenshots")
             screenshots_dir.mkdir(parents=True, exist_ok=True)
-            screenshot_path = str(screenshots_dir / f"{item.name}_failed_{timestamp}.png")
-            page.screenshot(path=screenshot_path)
+            screenshot_path = screenshots_dir / f"{item.name}_failed_{timestamp}.png"
+            page.screenshot(path=str(screenshot_path))
             extras = getattr(report, "extras", [])
             extras.append(extras_module.image(f"screenshots/{screenshot_path.name}"))
             report.extras = extras

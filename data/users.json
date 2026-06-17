@@ -1,8 +1,16 @@
 {
 
-    "valid_user": {
+    "valid_admin_user": {
         "username": "admin",
         "password": "Admin1234!"
+    },
+    "valid_patient_user": {
+        "username": "marfer",
+        "password": "Fabio123"
+    },
+    "valid_doctor_user": {
+        "username": "fabdoc",
+        "password": "Fabio123"
     },
     "invalid_user": {
         "username": "invaliduser",
